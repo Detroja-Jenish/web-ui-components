@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ui Component Demostration</title>
+    <style>
+        body{
+            height: 150vh;
+        }
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+            
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./css/bento.css">
+    <link rel="stylesheet" href="./css/3d-card.css">
+    <link rel="stylesheet" href="./css/card-mtx.css">
+    <link rel="stylesheet" href="./css/macbook-scroll.css">
+    <link rel="stylesheet" href="./css/glowing-star-card.css">
+    <link rel="stylesheet" href="./css/msg-reveal.css">
+    <link rel="stylesheet" href="./css/link-reveal-card.css">
+</head>
+<body>
+    <div class="grid" grid-cols="20">
+        <div class="box-wrapper title-hover" title="Jenish" col="1" colspan="8" row="1" rowspan="6">
+            <div class="card" id="card">
+                <h1>Make things float in air</h1>
+                <p class="desc">Hover over this card to unleash the power of CSS perspective</p>
+                <img src="./assests/cooking_honey_by_raeseddon2_dg4bmsc-pre.jpg" alt="">
+                <div class="card-footer">
+                    <a href="#" class="link"> Try now -></a>
+                    <button>Sign Up</button>
+                </div>
+            </div>
+        </div>
+        <div class="box-wrapper title-hover" title="Detroja" col="9" colspan="15" row="1" rowspan="3">
+            <div class="msg-card-container">
+                <div style="padding: 40px;">
+                    <div class="card-header">
+                        <h1>Beautify your website within minutes</h1>
+                        <p>Just Collab with me and you can build great looking websites within minutes.</p>
+                    </div>
+                    <div id="msg">
+                        <p id="placeholder">HOVER ME TO REVEAL</p>
+                        <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
+                        <p id="real"><span>HEY, THIS IS JENISH.</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-wrapper" col="9" colspan="5" row="4" rowspan="5">
+            <div style="height: 90%; width: 90%; background: black; border-radius: 16px;color: white;display: grid;place-items: center; padding: 20px">
+                <h1 style="text-align: center;">
+                    This Components are Example of Hover transition
+                </h1>
+                <ol style="font-size: 20px;">
+                    <li>3d-card</li>
+                    <li>Meassage reveal Card</li>
+                    <li>Glowing star bg card</li>
+                    <li>Mtx card : must try</li>
+                    <li>scroll animation (macbook)</li>
+                    <li>Link reveal Card</li>
+                    <li>Bento Grid itself</li>
+                </ol>
+            </div>
+        </div>
+        <div class="box-wrapper"  col="14" colspan="7" row="4" rowspan="5">
+            <div class="card-glowing-star">
+                <div class="glowing-star-container">
+                    <!-- initialised with js-->
+                </div>
+                <div class="card-glowing-star-body">
+                    <h1>Hover over me</h1>
+                    <p>This is a glowing stars background card. Hover over the card to make the card glow.</p>
+                </div>
+            </div>
+        </div>
+        <div class="box-wrapper" col="1" colspan="8" row="7" rowspan="6">
+            <div id="card-mtx-container">
+                <i class="fa-solid fa-plus icon-plus" style="color: #ffffff;"></i>
+                <i class="fa-solid fa-plus icon-plus" style="color: #ffffff;"></i>
+                <i class="fa-solid fa-plus icon-plus" style="color: #ffffff;"></i>
+                <i class="fa-solid fa-plus icon-plus" style="color: #ffffff;"></i>
+                <div id="card-mtx">
+                  <span class="text">Jenish</span>
+                </div>
+                <p>
+                  Hover over this card-mtx to reveal an awesome effect. Running out of copy here.
+                </p>
+                <p class="btn">
+                  Watch me hover
+                </p>
+              </div>
+        </div>
+    
+        <div class="box-wrapper" col="9" colspan="12" row="9" rowspan="7" style="overflow-y: scroll;">
+            <h1 class="macbook-h1"> Just scroll down for see Magic </h1>
+            <h1 class="macbook-h1">This Macbook is built By Jenish.No kidding.</h1>
+            <div class="mackbook">
+                <div class="screen-container">
+                    <h1>></h1>
+                    <div class="screen"></div>
+                </div>
+                <div class="keyboard">
+        
+                </div>
+            </div>
+        </div>
+        <div class="box-wrapper" col="1" colspan="8" row="13" rowspan="4">
+            <div class="card-link-reveal-wrapper">
+                <a class="link-btn fn-white" href="www.github.com/detroja-jenish/web-ui-components">Github Repo Link</a>
+                <div class="card-link-reveal">
+                    <img src="./assests/astro_cats_by_kvacm_dftva1p.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="box-chaser"></div>
+
+    </div>
+
+    <address style="margin: 30px auto; width: fit-content;padding-block: 24px;">
+        name: Jenish <br>
+        contact no: +91 99049 81905 <br>
+        email : jenishdetroja2004@gmail.com
+    </address>
+    <script src="./js/3d-card.js"></script>
+    <script src="./js/msg-reveal.js"></script>
+    <script src="./js/bento.js"></script>
+    <script src="./js/card-mtx.js"></script>
+    <script src="./js/glowing-star-card.js"></script>
+    <script src="./js/link-reveal-card.js"></script>
+    <!-- <script src="./js/show-title-hover.js"></script> -->
+</body>
+</html>

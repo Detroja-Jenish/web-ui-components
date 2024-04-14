@@ -1,0 +1,104 @@
+.msg-card-container{
+    max-width: 900px;
+    width: 95%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    /* padding: 24px; */
+}
+.msg-card-container>div{
+    background-color: black;
+    padding: 40px;
+    border-radius: 16px;
+}
+#msg{
+    box-sizing: border-box;
+    position: relative;
+    font-size: 30px;
+    font-weight: 900;
+    white-space: nowrap;
+    padding: 0.8em;
+    /* border: 1px solid salmon; */
+}
+#placeholder{
+    color: grey;
+    padding-block: 1em;
+    mask-image: linear-gradient(90deg,white 0% 50%,transparent 50% 100%);
+    mask-size: 200%;
+    font-size: 1em;
+    mask-position: var(--remove-char-percentage) 0%;
+}
+
+
+#real{
+    box-sizing: border-box;
+    background-color: transparent;
+    font-size: 30px;
+    max-width: calc(100% - 1.6em);
+    padding-block: 1em;
+    /* padding-left: 0.8em; */
+    margin: 0px;
+    width: 0px;
+    position: absolute;
+    top: 0.8em;
+    left: 0.8em;
+    display: flex;
+    text-wrap: nowrap;
+    --cursor-display: none;
+
+    /* border: 1px solid green; */
+}
+#real>span{
+    width: 100%;
+    overflow: hidden;
+    /* background-color: red; */
+}
+#real::after{
+    content: '';
+    height: 100%;
+    width: 5px;
+    background: linear-gradient(transparent, rgba(255, 255, 0, 0.204),transparent);    
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    border-radius: 50%;
+    display: var(--cursor-display);
+    transition-duration: 0.2s;
+    transform: rotateZ(var(--cursor-rotate-deg)) translateX(100%);
+}
+#particles{
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+}
+.particle{
+    position: absolute;
+    height: 3px;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    background-color: yellow;
+    display: inline-block;
+    top:0px;
+    transition-duration: 0.1s;
+    animation: blink  linear infinite alternate;
+    
+}
+
+@keyframes blink {
+    to{
+        opacity: 0;
+        scale: 0;
+    }
+}
+
+@media screen and (width<700px) {
+    .msg-card-container{
+        transform-origin: left;
+        transform: scale(0.65);
+    }
+    #msg{
+        font-size: 30px;
+    }
+}

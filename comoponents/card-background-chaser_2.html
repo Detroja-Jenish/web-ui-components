@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid</title>
+    <style>
+        body{
+            height: 150vh;
+            padding: 100px;
+        }
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        .grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: repeat(9, 200px);
+            position: relative;
+            padding: 10px;
+            background-color: #111;
+            /* border-radius: 42px; */
+        }
+        .box-wrapper{
+            padding: 20px;
+            z-index: 10;
+            border: 1px solid white;
+        }
+        .box{
+            height: 100%;
+            width: 100%;
+            border-radius: 12px;
+            /* background: linear-gradient(purple, red) */
+        }
+        .box-chaser{
+            background-color: rgb(243, 147, 3);
+            transform: scale(0);
+            position: absolute;
+            z-index: 5;
+            transition-duration: 0.5;
+            border-radius: 20px;
+
+        }
+
+        .box-wrapper:hover ~ .box-chaser{
+            transform: scale(1);
+            transition-duration: 0.5s;
+            transition-timing-function: ease-in-out;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="box-wrapper" col="1" colspan="1" row="1" rowspan="2"><div class="box"></div></div>
+        <div class="box-wrapper" col="2" colspan="2" row="1" rowspan="1"><div class="box"></div></div>
+        <div class="box-wrapper" col="2" colspan="2" row="2" rowspan="3"><div class="box"></div></div>
+        <div class="box-wrapper" col="4" colspan="1" row="1" rowspan="5"><div class="box"></div></div>
+        <div class="box-wrapper" col="1" colspan="1" row="3" rowspan="5"><div class="box"></div></div>
+        <div class="box-wrapper" col="2" colspan="3" row="6" rowspan="3"><div class="box"></div></div>
+        <div class="box-wrapper" col="2" colspan="1" row="5" rowspan="1"><div class="box"></div></div>
+        <div class="box-wrapper" col="3" colspan="1" row="5" rowspan="1"><div class="box"></div></div>
+        <div class="box-wrapper" col="1" colspan="1" row="8" rowspan="1"><div class="box"></div></div>
+        <div class="box-wrapper" col="1" colspan="2" row="9" rowspan="1"><div class="box"></div></div>
+        <div class="box-wrapper" col="3" colspan="2" row="9" rowspan="1"><div class="box"></div></div>
+        <div class="box-chaser"></div>
+    </div>
+    <script>
+        box_wrappers = document.getElementsByClassName("box-wrapper")
+        box_chaser = document.getElementsByClassName('box-chaser')[0]
+        boxs = document.getElementsByClassName('box')
+        for(let box_wrapper of box_wrappers){
+            box_wrapper.style.gridColumn = `${box_wrapper.getAttribute('col')} / span ${box_wrapper.getAttribute('colspan')}`
+            box_wrapper.style.gridRow = `${box_wrapper.getAttribute('row')} / span ${box_wrapper.getAttribute('rowspan')}`
+            box_wrapper.onmouseenter = (e)=>{
+                let ebox_wrapper = box_wrapper
+                
+                box_chaser.style.width = `${ebox_wrapper.offsetWidth - 20}px`
+                box_chaser.style.height = `${ebox_wrapper.offsetHeight - 20}px`
+                box_chaser.style.top = `${ebox_wrapper.offsetTop + 10}px`
+                box_chaser.style.left = `${ebox_wrapper.offsetLeft + 10}px`
+                box_chaser.style.backgroundColor = randomColor()
+            }
+        }
+
+        for(let box of boxs){
+            let color = `linear-gradient(${Math.random()*360}deg,${randomColor()},${randomColor()})`
+            //console.log(color);
+            box.style.background = color
+        }
+        function randomColor(){
+            hexs = ["0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f","0","1","2","3","4",'5',"6","7","8","9","a","b","c","d","e","f"]
+            rColor = "#";
+            for(i = 0; i<6; i++){
+                rColor += hexs[ Math.ceil(Math.random()*270)];
+            }
+            //console.log(rColor)
+            return rColor;
+        }
+    </script>
+    
+</body>
+</html>

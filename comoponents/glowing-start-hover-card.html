@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing start card-glowing-star hover effect</title>
+    <style>
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: grid;
+            place-items: center;
+            background-color: black;
+        }
+
+        .card-glowing-star{
+            max-width: 400px;
+            width: 80vw;
+            background: linear-gradient(45deg, rgb(38,38,38),rgb(26,26,26));
+            padding: 20px;
+            border: 1px solid white;
+            border-radius: 16px;
+            color: white;
+            font-size: 16px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .card-glowing-star-body{
+            margin-block: 10px;
+            
+        }
+
+        .card-glowing-star-body p{
+            font-size: 1.5em;
+        }
+        .glowing-star-container{
+            aspect-ratio: 2;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            position: absolute;
+            top:0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .star-row{
+            min-height: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .star{
+            width: 3px;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            background-color: white;
+            scale: 0.2;
+            transition-duration: 2s;
+            transition-delay: var(--transition-delay);
+            box-shadow: 1px 1px 3px blue,-1px -1px 3px blue,-1px 1px 3px blue,1px -1px 3px blue
+            ,2px 2px 3px blue,-2px -2px 3px blue,-2px 2px 3px blue,2px -2px 3px blue;
+
+        }
+        .card-glowing-star:hover .star{
+            scale: 1.1
+        }
+        
+
+        @keyframes blink-star{
+            to{
+                scale: 1.1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-glowing-star">
+        <div class="glowing-star-container">
+            <!-- initialised with js-->
+        </div>
+        <div class="card-glowing-star-body">
+            <h1>Hover over me</h1>
+            <p>This is a glowing stars background card-glowing-star. Hover over the card-glowing-stars to make the card-glowing-star glow.</p>
+        </div>
+    </div>
+    <script>
+        
+        
+        const card_glowing_star = document.getElementsByClassName('card-glowing-star')[0]
+        const star_rows = document.getElementsByClassName('star-row')
+        const glowing_star_container = document.getElementsByClassName('glowing-star-container')[0]
+        let timeouts = []
+        async function initStarGrid(){
+            starHtml = ''
+            rows = card_glowing_star.offsetHeight/40
+            cols = card_glowing_star.offsetWidth / 40
+            for(i=0; i<rows;i++){
+                starHtml = await starHtml + `<div class='star-row' style='--transition-delay: ${i*0.2}s'>`
+                for(j=0; j<cols;j++){
+                    starHtml = starHtml + '<span class="star"></span>'
+                }
+                starHtml = await starHtml + '</div>'
+            }
+            glowing_star_container.innerHTML = starHtml
+        }
+        function starFUn(){
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            async function glow(local_star){
+                const delay = Math.random()*60
+                local_star.removeAttribute('style')
+                await sleep(100)
+                local_star.style.animation = `blink-star 1.5s ease-in-out ${delay}s 2 alternate forwards`
+                id = setTimeout(()=>{glow(local_star,id)}, delay*1000 + 3000)
+                timeouts.push(id)
+            }
+            for(let star_row of star_rows){
+                const stars = star_row.getElementsByClassName('star')
+                for(let star of stars){
+                    glow(star)
+                }
+            }
+        }
+        
+        async function main(){
+            await initStarGrid()
+            starFUn()
+            card_glowing_star.onmouseenter = () => {
+                //console.log(timeouts);
+                //console.log("enteres");
+                for(let timeout of timeouts){
+                    clearTimeout(timeout);
+                }
+                timeouts = []
+            }
+    
+            card_glowing_star.onmouseleave = () => {
+                //console.log('leave');
+                starFUn()
+            }
+        }
+
+        main()
+    </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            transition-duration: 0.3s;
+        }body{
+            background-color: #111;
+        }
+        .component{
+            background-color: transparent;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            transform-style: preserve-3d;
+            perspective: 5000px;
+        }
+        .card{
+            width: 500px;
+            border: 0.1px solid black;
+            background-color: black;
+            border-radius: 32px;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding: 32px;
+            gap: 5px;
+            transition-duration: 0.1s;
+            /* perspective: 2000px; */
+            transform-style: preserve-3d;            
+        }
+        .desc{
+            font-size: 18px;
+            font-weight: thin;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            /* font-family: Arial, Helvetica, sans-serif; */
+        }
+        img{
+            border-radius: 8px;
+            margin-top: 32px;
+            margin-bottom: 150px;
+        }
+        .card-footer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        button{
+            background-color: white;
+            color: black;
+            padding: 0.5em 1em;
+            border-radius: 8px;
+            border: none;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .card:hover > h1, .card:hover > .card-footer{
+            transform: translateZ(50px);
+        }
+        .card:hover > p{
+            transform: translateZ(60px);
+        }
+        .card:hover > img{
+            transform: translateZ(80px) scale(1.1);
+        }
+        /* .card:hover{
+            background-color: red;
+            transform: rotateX(10deg) rotateY(0deg);
+            animation: rotate3ds 5s linear  infinite  ;
+        } */
+
+        @keyframes rotate3ds{
+            0%{
+                transform: rotateX(15deg) rotateY(0deg);
+            }
+            25%{
+                transform: rotateX(0deg) rotateY(15deg);
+            }
+            50%{
+                transform: rotateX(-15deg) rotateY(0deg);
+            }
+            75%{
+                transform: rotateX(0deg) rotateY(-15deg);
+            }
+            100%{
+                transform: rotateX(15deg) rotateY(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="component">
+        <div class="card" id="card">
+            <h1>Make things float in air</h1>
+            <p class="desc">Hover over this card to unleash the power of CSS perspective</p>
+            <img src="../assests/cooking_honey_by_raeseddon2_dg4bmsc-pre.jpg" alt="">
+            <div class="card-footer">
+                <a href="#" class="link"> Try now -></a>
+                <button>Sign Up</button>
+            </div>
+        </div>
+    </div>
+   
+    <script>
+        card = document.getElementById("card")
+maxDegree = 10
+cardLeft = card.offsetLeft
+cardTop = card.offsetTop
+cardWidth = card.offsetWidth
+cardHeight = card.offsetHeight
+
+function rotate_card(e){
+    let deg_x = 0
+    let deg_y = 0
+
+    if(e.clientX - cardLeft <= cardWidth / 2){
+        deg_x =  ((e.clientX - cardLeft)*maxDegree)/(cardWidth / 2);
+        deg_x = maxDegree-deg_x
+        deg_x = -1*deg_x
+    }else{
+        deg_x =  ((e.clientX - cardLeft - (cardWidth / 2) )*maxDegree)/(cardWidth / 2);
+    }
+
+    if(e.clientY - cardTop <= cardHeight / 2){
+        deg_y =  ((e.clientY - cardTop)*maxDegree)/(cardHeight / 2);
+        deg_y = maxDegree-deg_y
+        deg_y = -1*deg_y
+    }else{
+        deg_y =  ((e.clientY - cardTop - (cardHeight / 2) )*maxDegree)/(cardHeight / 2);
+    }
+
+    card.style.transform = `rotateY(${deg_x}deg) rotateX(${deg_y}deg)`
+}
+
+card.addEventListener('mouseenter', rotate_card);
+card.addEventListener('mousemove', rotate_card);
+card.addEventListener('mouseover', rotate_card);
+
+const children = card.children;
+for(const child of children){
+    child.addEventListener('mouseout', (e) => {
+        //console.log(e.target);
+        e.stopPropagation(); // Stop event bubbling
+        // //console.log(e)
+    });
+}
+
+card.addEventListener('mouseout', (e) => {
+    if(e.target.getAttribute("class") === "card"){
+        //console.log('======',e.target);
+        card.removeAttribute('style');
+    }else{
+        //console.log(e.target);
+    }
+    
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+.macbook-h1{
+    margin-block: 50%;
+    color: white;
+}
+.mackbook{
+    max-width: 500px;
+    width: 80vw;
+    aspect-ratio: 500/600;
+    margin-inline: auto;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    margin-bottom: 90vh;
+}
+.screen-container{
+    width: 100%;
+    height: 50%;
+    border: 1px solid yellow;
+    transform: rotateX(-45deg);
+    transform-origin: bottom;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    background-color: #111;
+    color: white;
+    display: grid;
+    place-items: center;
+}
+.screen{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    z-index: 100;
+    background-image: url(../assests/screen.png);
+    background-size: cover;
+    animation: animate;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timeline: view();
+    animation-range-start: 300px;
+    animation-range-end: 1200px;
+}
+.keyboard{
+    width: 100%;
+    height: 50%;
+    border: 1px solid white;
+    background-color: rgb(190, 183, 183);
+    z-index: -1;
+}
+
+@keyframes animate {
+    50%{
+        transform: translateZ(150px);
+    }60%{
+        transform-origin: top;
+        transform: translateZ(150px) rotateX(25deg) ;
+    }
+    80%{
+        transform-origin: top;
+        transform: translateZ(150px) translateY(1000px)  rotateX(25deg) scale(1.6);
+        
+    }
+    100%{
+        transform-origin: top;
+        transform: translateZ(150px) translateY(1000px)  rotateX(25deg) scale(1.6);
+    }
+}

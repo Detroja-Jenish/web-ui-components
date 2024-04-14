@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+        }
+        body{
+            background-color: black;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .msg-card-container{
+            max-width: 600px;
+            width: 80vw;
+            background-color: rgb(100,100,100,0.2);
+            border: 1px solid white;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding: 24px;
+        }
+        #msg{
+            /* border: 1px solid red; */
+            box-sizing: border-box;
+            position: relative;
+            font-size: 40px;
+            font-weight: 900;
+            white-space: nowrap;
+
+        }
+        #placeholder{
+            color: grey;
+            padding-block: 1em;
+            mask-image: linear-gradient(90deg,white 0% 50%,transparent 50% 100%);
+            mask-size: 200%;
+            mask-position: var(--remove-char-percentage) 0%;
+        }
+
+
+        #real{
+            background-color: transparent;
+            padding-block: 1em;
+            margin: 0px;
+            width: 0px;
+            position: absolute;
+            top: 0;
+            display: flex;
+            text-wrap: nowrap;
+            --cursor-display: none;
+        }
+        #real>span{
+            width: 100%;
+            overflow: hidden;
+        }
+        #real::after{
+            content: '';
+            height: 100%;
+            width: 5px;
+            background: linear-gradient(transparent, rgba(255, 255, 0, 0.204),transparent);    
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            border-radius: 50%;
+            display: var(--cursor-display);
+            transition-duration: 0.2s;
+            transform: rotateZ(var(--cursor-rotate-deg)) translateX(100%);
+        }
+        #particles{
+            position: absolute;
+            top: 0px;
+            height: 100%;
+            width: 100%;
+        }
+        .particle{
+            position: absolute;
+            height: 3px;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            background-color: yellow;
+            display: inline-block;
+            top:0px;
+            transition-duration: 0.1s;
+            animation: blink  linear infinite alternate;
+            
+        }
+
+        @keyframes blink {
+            to{
+                opacity: 0;
+                scale: 0;
+            }
+        }
+
+        @media screen and (width<700px) {
+            #msg{
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="msg-card-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Beautify your website within minutes</h1>
+                <p>Just Collab with me and you can build great looking websites within minutes.</p>
+            </div>
+            <div id="msg">
+                <p id="placeholder">HOVER ME TO REVEAL</p>
+                <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
+                <p id="real"><span>HEY, THIS IS JENISH.</span></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        class Particle{
+            
+            constructor(particle, container){
+                this.xlimit = container.offsetWidth
+                this.ylimit = container.offsetHeight
+                this.particle = particle;
+                this.x = Math.random()*this.xlimit
+                this.y = Math.random()*this.ylimit
+                this.up = (Math.random(0,1) > 0.5)? 1 : -1 
+                this.left = (Math.random(0,1) > 0.5)? 1 : -1 
+                this.xa = Math.random()*3
+                this.ya = Math.random()*3
+                this.particle.style.animationDuration =`${Math.random()*4 + 2}s`
+                this.particle.style.scale = `${Math.random()*1.5}`
+                setInterval(()=>{this.move()},100)
+            }
+            reset(){
+                this.particle.style.scale = `${Math.random()*1.5}`
+                this.xa = Math.random()*3
+                this.ya = Math.random()*3
+                this.particle.style.scale = `${Math.random()*1.5}`
+                this.particle.style.animationDuration =`${Math.random()*4 + 2}s`
+            }
+            move(){
+                if(this.x < 10 || this.x > this.xlimit){
+                    this.left = -1*this.left
+                    this.reset()
+                }else if ( this.y < 10 || this.y > this.ylimit){
+                    this.up = -1*this.up
+                    this.reset()
+                }
+                this.y += this.up*this.ya
+                this.x += this.left*this.xa
+                this.particle.style.top = `${this.y}px`
+                this.particle.style.left = `${this.x}px`
+            }
+        }
+
+
+        const msg = document.getElementById('msg')
+        const placeholder = document.getElementById('placeholder')
+        const real = document.getElementById('real')
+        flag=true
+        msg.onmouseover = (e) => {
+            if(flag){
+                real.style.transitionDuration = '0.1s'
+                placeholder.style.transitionDuration = '0.1s'
+                real.style.setProperty('--cursor-rotate-deg', `${(Math.random()>0.5)? '':'-'}${Math.random()*(15-5+1)+5}deg`);
+                real.style.setProperty('--cursor-display','block')
+                flag=false
+            } 
+        }
+        msg.onmousemove = (e) => {
+
+            const x = e.clientX - msg.offsetLeft
+            const remove_char_percentage = (x * 100)/msg.offsetWidth
+            // msg.style.setProperty('--remove-char-percentage',`${remove_char_percentage}%`)
+            msg.style.setProperty('--remove-char-percentage',`-${remove_char_percentage}%`)
+            real.style.width = `${x}px`
+        }
+        msg.onmouseout = (e) => {
+            
+            real.style.setProperty('--cursor-display','none')
+            real.style.transitionDuration = '0.5s'
+            placeholder.style.transitionDuration = '0.5s'
+            real.style.width = '0px'
+            msg.style.setProperty('--remove-char-percentage',`0%`)
+            flag=true
+            //console.log(e,flag)
+        }
+
+        const particles = document.getElementsByClassName('particle')
+        for(let particle of particles){
+            const particle_obj = new Particle(particle,msg)
+            // setInterval(particle_obj.move,500)
+        }
+
+        
+    </script>
+</body>
+</html>

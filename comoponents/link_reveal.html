@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link_reveal</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        .bg1{background-color: #111111;}
+        .bg2{background-color: #fdfdfdfd;}
+        .fn-white{color:white}
+        .fn-black{color: black;}
+        .component{
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+        .card-link-reveal-wrapper{
+            width: 700px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            perspective: 500px;
+            transform-style:preserve-3d ;
+        }
+        .card-link-reveal{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background: linear-gradient(45deg, purple, orange);
+            transition-duration: 0.2s;
+            border-radius: 50px;
+        }
+
+        .card-link-reveal-wrapper:hover > .card-link-reveal{
+            transform: rotateX(60deg);
+            transform-origin: bottom;
+        }
+        .link-btn{
+            position: relative;
+            transition-duration: 0.2s;
+            display: inline;
+            padding: 10px 50px;
+            height: fit-content;
+            opacity: 0;
+            border: 1px solid grey;
+            border-radius: 25px;
+            font-weight: 900;
+            transition-delay: 0.3s;
+            text-decoration: none;
+        }
+        .link-btn::before{
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            height: 3px;
+            width: 100%;
+            left: 50%;
+            transform: translate(-50% ,100%);
+            /* background-color: red; */
+            background: linear-gradient(to right ,transparent, rgba(32, 128, 0, 0.491),rgb(96, 217, 55),rgba(32, 128, 0, 0.479),transparent);
+            z-index: 101;
+            border-radius: 50%;
+        }
+        .link-btn::after{
+            content: '';
+            height: 0px;
+            width: 5px;
+            background: linear-gradient(blue,white);
+            position: absolute;
+            left: 50%;
+            top: 40px;
+            transition-duration: 0.5s;
+            transition-delay: 0.3s;
+            z-index: 100;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+        }
+        
+
+        .card-link-reveal::after, .card-link-reveal::before{
+            content: '';
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            border: 2px solid black;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50% ,-50%) scale(0);
+        }
+        .card-link-reveal-wrapper:hover > .link-btn{
+            opacity: 1;
+        }
+
+        .card-link-reveal-wrapper:hover > .link-btn::after{
+            height: 225px;
+        }
+
+        .card-link-reveal-wrapper:hover > .card-link-reveal::after{
+            animation: ripple 2s linear infinite;
+            animation-delay: 0.7s;
+        }
+        .card-link-reveal-wrapper:hover > .card-link-reveal::before{
+            animation: ripple 2s linear infinite;
+            animation-delay: 1.8s;
+        }
+
+        @keyframes ripple {
+            0%{
+                transform: translate(-50% ,-50%) scale(0);
+                opacity: 0;
+            }
+            50%{
+                transform: translate(-50% ,-50%) scale(1.5);
+                opacity: 1;
+            }
+            100%{
+                transform:translate(-50% ,-50%) scale(2.5)  ;
+                opacity: 0.1
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="component bg1">
+        <div class="card-link-reveal-wrapper">
+            <a class="link-btn fn-white" href="./card-link-reveal-background-chaser_2.html">My Mind of Peace...</a>
+            <div class="card-link-reveal"></div>
+        </div>
+    </div>
+    <div class="component bg2">
+        <div class="card-link-reveal-wrapper">
+            <a class="link-btn fn-black" href="./card-link-reveal-background-chaser.html" >My Mind of Peace...</a>
+            <div class="card-link-reveal"></div>
+        </div>
+    </div>
+</body>
+</html>

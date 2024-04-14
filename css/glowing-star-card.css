@@ -1,0 +1,68 @@
+.card-glowing-star{
+    max-width: 400px;
+    width: 80vw;
+    height: 80%;
+    background: linear-gradient(45deg, rgb(38,38,38),rgb(26,26,26));
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 16px;
+    color: white;
+    font-size: 16px;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+}
+
+.card-glowing-star-body{
+    margin-block: 10px;
+    position: relative;
+}
+
+.card-glowing-star-body p{
+    font-size: 1.5em;
+}
+.glowing-star-container{
+    aspect-ratio: 2;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    z-index: -1;
+    overflow: hidden;
+}
+.star-row{
+    min-height: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.star{
+    width: 3px;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    background-color: white;
+    scale: 0.2;
+    transition-duration: 2s;
+    transition-delay: var(--transition-delay);
+    box-shadow: 1px 1px 3px blue,-1px -1px 3px blue,-1px 1px 3px blue,1px -1px 3px blue
+    ,2px 2px 3px blue,-2px -2px 3px blue,-2px 2px 3px blue,2px -2px 3px blue;
+
+}
+.card-glowing-star:hover .star{
+    scale: 1.1
+}
+
+@keyframes blink-star{
+    to{
+        scale: 1.1;
+    }
+}
