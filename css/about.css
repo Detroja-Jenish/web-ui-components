@@ -1,0 +1,43 @@
+#about{
+    padding: 0px 5vw;
+}
+.skills-scroll-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding: 1rem 0;
+  }
+  
+  .skills-grid {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: scroll-left 20s linear infinite;
+  }
+  
+  .skill-card {
+    background-color: #A7C796;
+    color: #1e1e1e;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    white-space: nowrap;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+
+    #personal-info p{
+        color: #4A635D;
+        font-size: 24px;
+    padding: 4rem 2rem;
+
+    }

@@ -1,0 +1,104 @@
+#contact{
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: black;
+  }
+#card-mtx-container{
+    z-index: 100;
+    /* display: flex; */
+    width: min-content;
+    border: 1px solid grey;
+    padding: 20px;
+    position: relative;
+    
+  }
+  
+  #card-mtx{
+    border-radius: 24px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    max-width: 400px;
+    width: 90vw;
+    aspect-ratio: 1;
+    margin-bottom: 30px;
+    color: red;
+  }
+  
+  #card-mtx::after{
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    border-radius: 24px;
+  }
+  #card-mtx::before{
+    content: '';
+    text-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    background: transparent;
+  }
+  
+  #card-mtx:hover::before{
+    content: attr(data-bg);
+    color: whitesmoke;
+    background: linear-gradient(-135deg,limegreen,rgb(0, 102, 255));
+    mask-image: radial-gradient(270px at var(--mouse-x) var(--mouse-y),white,transparent);
+    overflow: hidden;
+    border-radius: 24px;
+  
+  }
+  
+  .text{
+    background-color: rgba(0,0,0,0.3);
+    position: relative;
+    color: white;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    font-weight: 800;
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+  }
+  p{
+    color: whitesmoke;
+
+    font-size: 20px;
+  }
+  .btn{
+    width: fit-content;
+    padding: 0.5em 1em;
+    border: 1px solid white;
+    border-radius: 1.5em;
+  }
+  .icon-plus{
+    position: absolute;
+    font-size: 45px;
+    transform: translate(-50%, -50%)
+  }
+  
+  .icon-plus:nth-child(1){
+    top: calc(0%);
+    left: calc(0%);
+  }
+  .icon-plus:nth-child(2){
+    top: calc(0%);
+    left: calc(100%);
+  }
+  .icon-plus:nth-child(3){
+    top: calc(100%);
+    left: calc(100%);
+  }
+  .icon-plus:nth-child(4){
+    top: calc(100%);
+    left: calc(0%);
+  }

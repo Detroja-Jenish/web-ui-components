@@ -1,0 +1,106 @@
+#projects {
+    padding: 3rem 2rem;
+    background-color: #4A635D;
+    text-align: center;
+  }
+  
+  #projects h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #F9F4EF;
+  }
+  
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 90VW;
+    margin: 0 auto;
+  }
+
+  
+
+  /* -  */
+  .card{
+    /* max-width: 900px; */
+    /* height: 90%; */
+    height: max-content;
+    width: 80%;
+    border: 0.1px solid black;
+    background-color: black;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 32px;
+    gap: 5px;
+    transition-duration: 0.1s;
+    /* perspective: 2000px; */
+    transform-style: preserve-3d;            
+}
+.desc{
+    font-size: 18px;
+    font-weight: thin;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
+}
+#projects img{
+    border-radius: 8px;
+    margin-top: 32px;
+    margin-bottom: 20%;
+    width: 100%;
+    z-index: 200;
+}
+
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.projects-btn{
+    background-color: white;
+    color: black;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.card:hover > h1, .card:hover > .card-footer{
+    transform: translateZ(50px);
+}
+.card:hover > p{
+    transform: translateZ(60px);
+}
+.card:hover > img{
+    transform: translateZ(80px) scale(1.1);
+}
+/* .card:hover{
+    background-color: red;
+    transform: rotateX(10deg) rotateY(0deg);
+    animation: rotate3ds 5s linear  infinite  ;
+} */
+
+@keyframes rotate3ds{
+    0%{
+        transform: rotateX(15deg) rotateY(0deg);
+    }
+    25%{
+        transform: rotateX(0deg) rotateY(15deg);
+    }
+    50%{
+        transform: rotateX(-15deg) rotateY(0deg);
+    }
+    75%{
+        transform: rotateX(0deg) rotateY(-15deg);
+    }
+    100%{
+        transform: rotateX(15deg) rotateY(0deg);
+    }
+}
